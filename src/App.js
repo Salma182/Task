@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
-import { Line } from 'react-chartjs-2';
 import TransactionGraph from './chart';
 
 function App() {
@@ -10,12 +9,12 @@ function App() {
 
   useEffect(() => {
     // Fetch customers
-    axios.get('http://localhost:3005/customers')
+    axios.get('https://salma.github.io/customers')
       .then(response => setCustomers(response.data))
       .catch(error => console.error('Error fetching customers:', error));
 
     // Fetch transactions
-    axios.get('http://localhost:3005/transactions')
+    axios.get('https://salma.github.io/transactions')
       .then(response => setTransactions(response.data))
       .catch(error => console.error('Error fetching transactions:', error));
   }, []);
@@ -23,10 +22,10 @@ function App() {
   const getCustomerTransactions = (customerId) => {
     return transactions.filter(transaction => transaction.id === customerId);
   };
-  // console.log(getCustomerTransactions(2))
+  console.log(getCustomerTransactions(2))
 
 const customerss= customers.map(customer => customer.name)
-  // console.log(customerss)
+  console.log(customerss)
 
   return <> 
      <div className='container'>

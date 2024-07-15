@@ -1,56 +1,68 @@
-// import React from 'react';
-// import { Line } from 'react-chartjs-2';
-// // import 'chartjs-adapter-date-fns';
 
-// const TransactionGraph = ({ transactions }) => {
-//   if (!transactions || transactions.length === 0) {
-//     return <div>No transactions data available.</div>;
-//   }
+import React from "react";
+import { Chart as ChartJS, defaults } from "chart.js/auto";
+import { Line } from "react-chartjs-2";
+import "./App.css";
+import Data from "./data.json";
+import { useParams } from "react-router";
 
-//   // Extracting dates and amounts from transactions
-//   const dates = transactions.map(t => new Date(t.date)); // Convert to Date objects if necessary
-//   const amounts = transactions.map(t => t.amount);
+defaults.responsive = true;
+defaults.plugins.title.align = "start";
+defaults.plugins.title.font.size = 20;
+defaults.plugins.title.color = "black"; 
 
-//   const data = {
-//     labels: dates,
-//     datasets: [{
-//       label: 'Transaction Amount',
-//       data: amounts,
-//       borderColor: 'rgba(75, 192, 192, 1)',
-//       borderWidth: 2,
-//       fill: false
-//     }]
-//   };
 
-//   const options = {
-//     scales: {
-//       x: {
-//         type: 'time', // Use time scale for x-axis
-//         time: {
-//           unit: 'day' // Adjust the time unit as per your data granularity
-//         },
-//         title: {
-//           display: true,
-//           text: 'Date'
-//         }
-//       },
-//       y: {
-//         title: {
-//           display: true,
-//           text: 'Amount'
-//         }
-//       }
-//     },
-//     plugins: {
-//       tooltip: {
-//         callbacks: {
-//           label: (context) => `Amount: ${context.raw}`
-//         }
-//       }
-//     }
-//   };
+const TransactionChart = () => {
 
-//   return <Line data={data} options={options} />;
-// };
+const {id} = useParams()
 
-// export default TransactionGraph;
+const filteredTransactions = Data.transactions.filter(
+    transaction => transaction.customer_id === parseInt(id)
+  );
+  const amounts = filteredTransactions.map(transaction => transaction.amount);
+
+
+    const uniqueDates = Array.from(new Set(Data.transactions.map(data => data.date)));
+
+    // Format dates as "MM-DD-YYYY"
+    const formattedDates = uniqueDates.map(date => {
+      const [year, month, day] = date.split('-');
+      return `${month}-${day}-${year}`;
+    });
+
+  return (
+    <div className="App container">
+      <div className="dataCard revenueCard">
+
+        <Line
+          data={{
+            labels: formattedDates,
+            datasets: [
+              {
+                label: "Total Amount",
+                data: amounts,
+                backgroundColor: "#064FF0",
+                borderColor: "#064FF0",
+              },
+            ],
+          }}
+          options={{
+            elements: {
+              line: {
+                tension: 0.5,
+              },
+            },
+            plugins: {
+              title: {
+                text: "Monthly Revenue & Cost",
+              },
+            },
+          }}
+        />
+      </div>
+
+    </div>
+  );
+};
+
+export default TransactionChart

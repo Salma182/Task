@@ -4,6 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// import '../node_modules/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js';
+import '../node_modules/chart.js/dist/chart.js'
+// import '../node_modules/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js'  
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

@@ -1,4 +1,5 @@
 {
+  "homepage": "https://salma182.github.io/customer-transaction-app/",
   "name": "task",
   "version": "0.1.0",
   "private": true,
@@ -17,7 +18,6 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-"homepage": "https://salma182.github.io/customer-transaction-app/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

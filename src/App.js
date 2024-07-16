@@ -7,11 +7,11 @@ import TransactionChart from './chart';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/customer-transaction-app">
       <div className="app">
         <Routes>
-          <Route path="salma182.github.io/customer-transaction-app/" element={<Customers />} />
-          <Route path="salma182.github.io/customer-transaction-app/customer/:id" element={<TransactionChart />} />
+          <Route path="/" element={<Customers />} />
+          <Route path="/customer/:id" element={<TransactionChart />} />
         </Routes>
       </div>
     </Router>

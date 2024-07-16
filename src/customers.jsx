@@ -23,7 +23,7 @@ const Customers = () =>{
     };
 
     const handleCustomerClick = (id)=>{
-        navigate("/customer/" + id)
+        navigate("customer/" + id)
     }
     
 

@@ -10,8 +10,8 @@ function App() {
     <Router>
       <div className="app">
         <Routes>
-          <Route path="/" element={<Customers />} />
-          <Route path="customer/:id" element={<TransactionChart />} />
+          <Route path="customer-transaction-app/" element={<Customers />} />
+          <Route path="customer-transaction-app/customer/:id" element={<TransactionChart />} />
         </Routes>
       </div>
     </Router>
